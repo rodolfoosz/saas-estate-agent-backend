@@ -42,6 +42,11 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+#gerenciadores de pacotes
+package-lock.json
+yarn.lock
+
+
 # temp directory
 .temp
 .tmp
@@ -54,3 +59,5 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+/generated/prisma

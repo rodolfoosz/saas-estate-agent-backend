@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: casae-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npx prisma generate && npx prisma migrate deploy && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_KCr1MlRbSg2T@ep-flat-heart-aczj9wz0-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require
+    autoDeploy: true
+    branch: master
