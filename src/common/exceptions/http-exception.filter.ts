@@ -47,7 +47,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     if (exception.code === 'P2002') {
       status = HttpStatus.CONFLICT;
-      message = 'Registro já existe com esse valor único.';
+      message = 'Registro já existe com esse usuário ou e-mail.';
     }
 
     response.status(status).json({

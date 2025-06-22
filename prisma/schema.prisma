@@ -8,14 +8,16 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  fullName   String
-  email      String   @unique
-  cpf        String
-  birthDate  DateTime
-  phone      String
-  address    String
-  password   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id             Int      @id @default(autoincrement())
+  fullName       String
+  email          String   @unique
+  cpf            String
+  birthDate      DateTime
+  phone          String
+  address        String
+  addressNumber  String   // <- novo campo
+  cep            String   // <- novo campo
+  password       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
