@@ -6,5 +6,7 @@ export class CreateUserDto {
   phone: string;
   password: string;
   confirmPassword: string;
+  cep: string;
   address: string;
+  addressNumber: string;
 }
