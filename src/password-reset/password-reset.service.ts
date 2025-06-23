@@ -32,7 +32,7 @@ export class PasswordResetService {
     });
 
     const frontendBaseUrl = this.configService.get<string>('FRONTEND_BASE_URL');
-    const resetLink = `${frontendBaseUrl}/auth/reset-password?token=${token}`;
+    const resetLink = `${frontendBaseUrl}/reset-password?token=${token}`;
 
     await this.emailService.sendPasswordResetEmail(user.email, resetLink);
   }
