@@ -1,26 +1,22 @@
-import { Injectable, BadRequestException, Logger, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  Logger,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { omitPassword, omitPasswordFromArray } from 'src/common/utils/omit-password';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
   private readonly logger = new Logger(UsersService.name);
 
- async create(data: {
-    fullName: string;
-    email: string;
-    cpf: string;
-    birthDate: string;
-    phone: string;
-    password: string;
-    confirmPassword: string;
-    cep: string;
-    address: string;
-    addressNumber: string;
-  }): Promise<Omit<User, 'password'>> {
+  constructor(private prisma: PrismaService) {}
+
+  async create(data: CreateUserDto): Promise<Omit<User, 'password'>> {
     const { confirmPassword, password, ...rest } = data;
     this.logger.log(`Tentando criar usuário com e-mail: ${data.email}`);
 
