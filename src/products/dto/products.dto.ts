@@ -9,7 +9,6 @@ export class ProductDto {
   images?: string[];
   rating?: number;
   attributes: Record<string, string | number | boolean>;
-  tenantId: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
