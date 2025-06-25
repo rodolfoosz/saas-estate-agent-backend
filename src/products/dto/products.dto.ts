@@ -10,7 +10,7 @@ export class ProductDto {
   location?: string;
   images?: string[];
   rating?: number;
-  attributes: InputJsonValue; // <--- aqui é o segredo
+  attributes: InputJsonValue;
   createdAt?: Date;
   updatedAt?: Date;
 }
