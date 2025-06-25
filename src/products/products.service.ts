@@ -1,19 +1,25 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { ProductDto } from './dto/products.dto';
 
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(ProductsService.name)
 
   async create(data: ProductDto) {
     return this.prisma.product.create({ data });
   }
 
   async findAll() {
-    return this.prisma.product.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
+    try{
+      return this.prisma.product.findMany({
+        orderBy: { createdAt: 'desc' },
+      });
+    } catch (error) {
+      this.logger.error('Erro ao buscar produtos', error.stack);
+      throw error;
+    }
   }
 
   async findOne(id: string) {
