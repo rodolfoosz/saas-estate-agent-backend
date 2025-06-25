@@ -35,4 +35,34 @@ export class ProductsService {
   async remove(id: string) {
     return this.prisma.product.delete({ where: { id } });
   }
+
+async search(term: string): Promise<ProductDto[]> {
+  const allProducts = await this.findAll();
+
+  return allProducts
+    .map(product => {
+      const normalizedAttributes =
+        typeof product.attributes === 'object' &&
+        !Array.isArray(product.attributes)
+          ? (product.attributes as Record<string, string | number | boolean>)
+          : {};
+
+      return {
+        ...product,
+        description: product.description ?? '',
+        category: product.category ?? '',
+        location: product.location ?? '',
+        rating: product.rating ?? 1,
+        attributes: normalizedAttributes,
+      };
+    })
+    .filter(product => {
+      const lower = term.toLowerCase();
+      return (
+        product.title.toLowerCase().includes(lower) ||
+        product.description.toLowerCase().includes(lower)
+      );
+    });
+  }
+
 }

@@ -1,5 +1,6 @@
 import {
   Controller, Get, Post, Body, Param, Patch, Delete,
+  Query,
 } from '@nestjs/common';
 import { ProductDto } from './dto/products.dto';
 import { ProductsService } from './products.service';
@@ -18,9 +19,9 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(id);
+  @Get('search')
+  search(@Query('term') term: string) {
+    return this.productsService.search(term);
   }
 
   @Patch(':id')

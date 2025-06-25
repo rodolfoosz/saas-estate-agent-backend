@@ -1,3 +1,5 @@
+import { InputJsonValue } from "@prisma/client/runtime/library";
+
 export class ProductDto {
   id?: string;
   title: string;
@@ -8,7 +10,7 @@ export class ProductDto {
   location?: string;
   images?: string[];
   rating?: number;
-  attributes: Record<string, string | number | boolean>;
+  attributes: InputJsonValue; // <--- aqui é o segredo
   createdAt?: Date;
   updatedAt?: Date;
 }
